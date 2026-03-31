@@ -6,13 +6,15 @@ import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthController } from './modules/auth/auth.controller';
-import config from './modules/config/config';
+import { validateEnv } from './modules/config/config';
+// import config from './modules/config/config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [config]
+      validate: validateEnv
+      // load: [config]
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
