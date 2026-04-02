@@ -6,8 +6,7 @@ import { JwtStrategy } from './jwt/jwt.strategy';
 import { ConfigService } from '@nestjs/config';
 import { LoginUseCase } from './use-cases/login.use-case';
 import { SignUpUseCase } from './use-cases/sign-up.use-case';
-import { LoginController } from './controllers/login.controller';
-import { SignUpController } from './controllers/sign-up.controller';
+import { AuthController } from './auth.controller';
 
 @Module({
   imports: [
@@ -22,7 +21,7 @@ import { SignUpController } from './controllers/sign-up.controller';
     })
   ],
   providers: [LoginUseCase, SignUpUseCase, JwtStrategy],
-  controllers: [LoginController, SignUpController],
+  controllers: [AuthController],
   exports: [LoginUseCase, SignUpUseCase]
 })
 export class AuthModule {}
