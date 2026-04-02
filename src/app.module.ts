@@ -1,20 +1,16 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
-import { AuthController } from './modules/auth/auth.controller';
-import { validateEnv } from './modules/config/config';
-// import config from './modules/config/config';
+import { validateEnv } from './config/config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       validate: validateEnv
-      // load: [config]
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -29,7 +25,6 @@ import { validateEnv } from './modules/config/config';
     UsersModule,
     AuthModule
   ],
-  controllers: [AppController, AuthController],
-  providers: [AppService],
+  controllers: [AppController],
 })
 export class AppModule {}
